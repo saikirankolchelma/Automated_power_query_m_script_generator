@@ -1,0 +1,147 @@
+{
+    "file_path": "C:\\Users\\ksaik\\OneDrive\\Desktop\\MSCriptAutomation\\MSCriptAutomation\\combined_datasets.xlsx",
+    "tables": [
+        {
+            "name": "Clinic Stats_Migrated Data",
+            "columns": [
+                {
+                    "name": "Admit Source",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Admit Type",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Appt Start Time",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Check In Time",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Clinical Unit",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Cohort",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Diagnosis Primary",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Discharge Datetime",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Encounter Number",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Encounter Status",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Gender",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Hospital LOS",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Hospital Room Number",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "MRN Number",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Patient Address Zipcode",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Procedure (Icd9) Primary",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Religion",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Strategic Planning Line Code",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Age",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Care Score",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Logistics Score",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "LOS",
+                    "type": "FLOAT"
+                },
+                {
+                    "name": "Number of Patients",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Number of Records",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Wait Time Days",
+                    "type": "FLOAT"
+                },
+                {
+                    "name": "Wait Time KPI",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Wait Time Min",
+                    "type": "INTEGER"
+                }
+            ]
+        },
+        {
+            "name": "Clinical Unit Costs_Migrated Da",
+            "columns": [
+                {
+                    "name": "Clinical Unit",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Episode Start Datetime",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "MRN Number",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Patient Address Zipcode",
+                    "type": "INTEGER"
+                },
+                {
+                    "name": "Daily Cost",
+                    "type": "FLOAT"
+                },
+                {
+                    "name": "Number of Records",
+                    "type": "INTEGER"
+                }
+            ]
+        }
+    ]
+}

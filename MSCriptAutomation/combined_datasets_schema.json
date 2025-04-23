@@ -1,0 +1,148 @@
+{
+    "source_file": "combined_datasets.xlsx",
+    "type": "Excel",
+    "tables": [
+        {
+            "name": "Clinic Stats_Migrated Data",
+            "columns": [
+                {
+                    "name": "Admit Source",
+                    "type": "Text"
+                },
+                {
+                    "name": "Admit Type",
+                    "type": "Text"
+                },
+                {
+                    "name": "Appt Start Time",
+                    "type": "Text"
+                },
+                {
+                    "name": "Check In Time",
+                    "type": "Text"
+                },
+                {
+                    "name": "Clinical Unit",
+                    "type": "Text"
+                },
+                {
+                    "name": "Cohort",
+                    "type": "Text"
+                },
+                {
+                    "name": "Diagnosis Primary",
+                    "type": "Text"
+                },
+                {
+                    "name": "Discharge Datetime",
+                    "type": "Text"
+                },
+                {
+                    "name": "Encounter Number",
+                    "type": "Text"
+                },
+                {
+                    "name": "Encounter Status",
+                    "type": "Text"
+                },
+                {
+                    "name": "Gender",
+                    "type": "Text"
+                },
+                {
+                    "name": "Hospital LOS",
+                    "type": "Text"
+                },
+                {
+                    "name": "Hospital Room Number",
+                    "type": "Text"
+                },
+                {
+                    "name": "MRN Number",
+                    "type": "Text"
+                },
+                {
+                    "name": "Patient Address Zipcode",
+                    "type": "Integer"
+                },
+                {
+                    "name": "Procedure (Icd9) Primary",
+                    "type": "Text"
+                },
+                {
+                    "name": "Religion",
+                    "type": "Text"
+                },
+                {
+                    "name": "Strategic Planning Line Code",
+                    "type": "Text"
+                },
+                {
+                    "name": "Age",
+                    "type": "Integer"
+                },
+                {
+                    "name": "Care Score",
+                    "type": "Integer"
+                },
+                {
+                    "name": "Logistics Score",
+                    "type": "Integer"
+                },
+                {
+                    "name": "LOS",
+                    "type": "Decimal"
+                },
+                {
+                    "name": "Number of Patients",
+                    "type": "Integer"
+                },
+                {
+                    "name": "Number of Records",
+                    "type": "Integer"
+                },
+                {
+                    "name": "Wait Time Days",
+                    "type": "Decimal"
+                },
+                {
+                    "name": "Wait Time KPI",
+                    "type": "Text"
+                },
+                {
+                    "name": "Wait Time Min",
+                    "type": "Integer"
+                }
+            ]
+        },
+        {
+            "name": "Clinical Unit Costs_Migrated Da",
+            "columns": [
+                {
+                    "name": "Clinical Unit",
+                    "type": "Text"
+                },
+                {
+                    "name": "Episode Start Datetime",
+                    "type": "Text"
+                },
+                {
+                    "name": "MRN Number",
+                    "type": "Text"
+                },
+                {
+                    "name": "Patient Address Zipcode",
+                    "type": "Integer"
+                },
+                {
+                    "name": "Daily Cost",
+                    "type": "Decimal"
+                },
+                {
+                    "name": "Number of Records",
+                    "type": "Integer"
+                }
+            ]
+        }
+    ]
+}

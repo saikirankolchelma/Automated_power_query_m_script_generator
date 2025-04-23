@@ -1,0 +1,334 @@
+{
+    "file_path": "C:\\Users\\ksaik\\OneDrive\\Desktop\\MSCriptAutomation\\MSCriptAutomation\\New_Dashboard_Parameter_Updated.tfl",
+    "inputs": [
+        {
+            "id": "7a336718-5f75-4644-b666-d41f220ecb46",
+            "name": "Product_data",
+            "type": ".v1.LoadExcel",
+            "parent_container_id": null,
+            "connection_name": "combined_datasets2.xlsx",
+            "source_file": "D:\\Data Files\\combined_datasets2.xlsx",
+            "db_class": "excel-direct",
+            "server": null,
+            "table_or_sheet": "[Product_data$]"
+        },
+        {
+            "id": "579b2feb-629d-47c4-9efa-3cd849d45236",
+            "name": "Sales_data",
+            "type": ".v1.LoadExcel",
+            "parent_container_id": null,
+            "connection_name": "combined_datasets2.xlsx",
+            "source_file": "D:\\Data Files\\combined_datasets2.xlsx",
+            "db_class": "excel-direct",
+            "server": null,
+            "table_or_sheet": "[Sales_data$]"
+        },
+        {
+            "id": "bf24ae4c-9290-41c3-96e8-75b903d3073f",
+            "name": "Customer_data",
+            "type": ".v1.LoadExcel",
+            "parent_container_id": null,
+            "connection_name": "combined_datasets2.xlsx",
+            "source_file": "D:\\Data Files\\combined_datasets2.xlsx",
+            "db_class": "excel-direct",
+            "server": null,
+            "table_or_sheet": "[Customer_data$]"
+        }
+    ],
+    "outputs": [
+        {
+            "id": "741025ed-9519-41a0-acc0-8e53fdf575d6",
+            "name": "Output",
+            "type": ".v1.WriteToHyper",
+            "parent_container_id": null,
+            "output_file": "D:\\TFL\\Demo_ETL.hyper"
+        }
+    ],
+    "joins": [
+        {
+            "id": "09ab23a3-4a07-48f0-9e6e-918383b0ad1d",
+            "name": "Sales+Union",
+            "type": ".v2018_2_3.SuperJoin",
+            "parent_container_id": null,
+            "join_type": "left",
+            "conditions": [
+                {
+                    "leftExpression": "[CustomerKey]",
+                    "rightExpression": "[CustomerKey]",
+                    "comparator": "=="
+                }
+            ],
+            "left_input_node_id": "53ae83e7-3792-4322-aef0-074c93d7ddf9",
+            "right_input_node_id": "486d638c-cf30-4fe8-b085-8460751ae27a"
+        }
+    ],
+    "unions": [
+        {
+            "id": "c90afe53-d6db-4d62-ac0f-4d2227d336c7",
+            "name": "Product+Customer",
+            "type": ".v2018_2_3.SuperUnion",
+            "parent_container_id": null,
+            "input_node_ids": [
+                "969acaea-e68e-4553-a49a-ecd3bbef270d",
+                "edb738b5-60db-407e-acae-c97e4b08c5be"
+            ]
+        }
+    ],
+    "cleaning_steps": [
+        {
+            "id": "2a2be53f-3808-475e-bf2f-4447d852642a",
+            "name": "RichNullFilter 2",
+            "type": ".v2018_2_1.RichNullFilter",
+            "parent_container_id": "969acaea-e68e-4553-a49a-ecd3bbef270d",
+            "step_type": "Filter",
+            "filter_details": "Null Filter (Mode: 2)",
+            "column_name": "Color"
+        },
+        {
+            "id": "05f9652e-9b18-4b8d-8b5c-9e334c57b300",
+            "name": "renamed Color to Product Color 1",
+            "type": ".v1.RenameColumn",
+            "parent_container_id": "969acaea-e68e-4553-a49a-ecd3bbef270d",
+            "step_type": "RenameColumn",
+            "original_name": "Color",
+            "new_name": "Product Color"
+        },
+        {
+            "id": "530eb96a-c295-4ef5-bb24-d22f39b733de",
+            "name": "Change OrderDateKey to Date 1",
+            "type": ".v1.ChangeColumnType",
+            "parent_container_id": "486d638c-cf30-4fe8-b085-8460751ae27a",
+            "step_type": "ChangeColumnType",
+            "changes": [
+                "OrderDateKey -> date (Calc: IF NOT ISNULL(DATE(DATEPARSE(\"yyyy-MM-dd\",[OrderDateKey]))) THEN DATE(DATEPARSE(\"yyyy-MM-dd\",[OrderDateKey])) ELSEIF NOT ISNULL(DATE([OrderDateKey])) THEN DATE([OrderDateKey]) ELSE NULL END)"
+            ]
+        },
+        {
+            "id": "023b0e04-6222-40cd-b2af-206ff2487dd5",
+            "name": "RichNullFilter 1",
+            "type": ".v2018_2_1.RichNullFilter",
+            "parent_container_id": "486d638c-cf30-4fe8-b085-8460751ae27a",
+            "step_type": "Filter",
+            "filter_details": "Null Filter (Mode: 2)",
+            "column_name": "ShipDateKey"
+        },
+        {
+            "id": "2a968238-893b-4d29-8fcc-230b30025318",
+            "name": "Exclude multi-column:multiple 1",
+            "type": ".v1.RangeFilter",
+            "parent_container_id": "edb738b5-60db-407e-acae-c97e4b08c5be",
+            "step_type": "Filter",
+            "filter_details": "Range Filter (Exclude: True, Ranges: {'State-Province': [{'startValue': '\"[Not Applicable]\"', 'includeStart': True, 'endValue': '\"[Not Applicable]\"', 'includeEnd': True}], 'Customer ID': [{'startValue': '\"[Not Applicable]\"', 'includeStart': True, 'endValue': '\"[Not Applicable]\"', 'includeEnd': True}], 'Customer': [{'startValue': '\"[Not Applicable]\"', 'includeStart': True, 'endValue': '\"[Not Applicable]\"', 'includeEnd': True}], 'City': [{'startValue': '\"[Not Applicable]\"', 'includeStart': True, 'endValue': '\"[Not Applicable]\"', 'includeEnd': True}], 'Country-Region': [{'startValue': '\"[Not Applicable]\"', 'includeStart': True, 'endValue': '\"[Not Applicable]\"', 'includeEnd': True}], 'Postal Code': [{'startValue': '\"[Not Applicable]\"', 'includeStart': True, 'endValue': '\"[Not Applicable]\"', 'includeEnd': True}]})",
+            "column_name": null
+        },
+        {
+            "id": "77b31592-1a57-4c02-bfbb-b3f0e1c0c08e",
+            "name": "Change Postal Code to Number (whole) 1",
+            "type": ".v1.ChangeColumnType",
+            "parent_container_id": "edb738b5-60db-407e-acae-c97e4b08c5be",
+            "step_type": "ChangeColumnType",
+            "changes": [
+                "Postal Code -> integer"
+            ]
+        },
+        {
+            "id": "1abe77d2-6373-49a6-9012-97c91e6639de",
+            "name": "Exclude Postal Code:null 1",
+            "type": ".v1.RangeFilter",
+            "parent_container_id": "edb738b5-60db-407e-acae-c97e4b08c5be",
+            "step_type": "Filter",
+            "filter_details": "Range Filter (Exclude: True, Ranges: {'Postal Code': [{'startValue': None, 'includeStart': True, 'endValue': None, 'includeEnd': True}]})",
+            "column_name": null
+        }
+    ],
+    "containers": [
+        {
+            "id": "53ae83e7-3792-4322-aef0-074c93d7ddf9",
+            "name": "Clean 1",
+            "type": ".v1.Container",
+            "parent_container_id": null
+        },
+        {
+            "id": "969acaea-e68e-4553-a49a-ecd3bbef270d",
+            "name": "Rename Color",
+            "type": ".v1.Container",
+            "parent_container_id": null
+        },
+        {
+            "id": "56e5a515-364b-4f39-80c0-5b92f55ce502",
+            "name": "Clean 2",
+            "type": ".v1.Container",
+            "parent_container_id": null
+        },
+        {
+            "id": "486d638c-cf30-4fe8-b085-8460751ae27a",
+            "name": "Remove Nulls",
+            "type": ".v1.Container",
+            "parent_container_id": null
+        },
+        {
+            "id": "edb738b5-60db-407e-acae-c97e4b08c5be",
+            "name": "Change type",
+            "type": ".v1.Container",
+            "parent_container_id": null
+        }
+    ],
+    "relationships": {
+        "741025ed-9519-41a0-acc0-8e53fdf575d6": [],
+        "53ae83e7-3792-4322-aef0-074c93d7ddf9": [
+            "09ab23a3-4a07-48f0-9e6e-918383b0ad1d"
+        ],
+        "7a336718-5f75-4644-b666-d41f220ecb46": [
+            "969acaea-e68e-4553-a49a-ecd3bbef270d"
+        ],
+        "969acaea-e68e-4553-a49a-ecd3bbef270d": [
+            "c90afe53-d6db-4d62-ac0f-4d2227d336c7"
+        ],
+        "2a2be53f-3808-475e-bf2f-4447d852642a": [
+            "05f9652e-9b18-4b8d-8b5c-9e334c57b300"
+        ],
+        "05f9652e-9b18-4b8d-8b5c-9e334c57b300": [],
+        "56e5a515-364b-4f39-80c0-5b92f55ce502": [
+            "741025ed-9519-41a0-acc0-8e53fdf575d6"
+        ],
+        "579b2feb-629d-47c4-9efa-3cd849d45236": [
+            "486d638c-cf30-4fe8-b085-8460751ae27a"
+        ],
+        "bf24ae4c-9290-41c3-96e8-75b903d3073f": [
+            "edb738b5-60db-407e-acae-c97e4b08c5be"
+        ],
+        "486d638c-cf30-4fe8-b085-8460751ae27a": [
+            "09ab23a3-4a07-48f0-9e6e-918383b0ad1d"
+        ],
+        "530eb96a-c295-4ef5-bb24-d22f39b733de": [],
+        "023b0e04-6222-40cd-b2af-206ff2487dd5": [
+            "530eb96a-c295-4ef5-bb24-d22f39b733de"
+        ],
+        "edb738b5-60db-407e-acae-c97e4b08c5be": [
+            "c90afe53-d6db-4d62-ac0f-4d2227d336c7"
+        ],
+        "2a968238-893b-4d29-8fcc-230b30025318": [
+            "77b31592-1a57-4c02-bfbb-b3f0e1c0c08e"
+        ],
+        "77b31592-1a57-4c02-bfbb-b3f0e1c0c08e": [
+            "1abe77d2-6373-49a6-9012-97c91e6639de"
+        ],
+        "1abe77d2-6373-49a6-9012-97c91e6639de": [],
+        "c90afe53-d6db-4d62-ac0f-4d2227d336c7": [
+            "53ae83e7-3792-4322-aef0-074c93d7ddf9"
+        ],
+        "09ab23a3-4a07-48f0-9e6e-918383b0ad1d": [
+            "56e5a515-364b-4f39-80c0-5b92f55ce502"
+        ]
+    },
+    "nodes_summary": {
+        "741025ed-9519-41a0-acc0-8e53fdf575d6": {
+            "name": "Output",
+            "type": ".v1.WriteToHyper",
+            "base_type": "output",
+            "parent_container_id": null
+        },
+        "53ae83e7-3792-4322-aef0-074c93d7ddf9": {
+            "name": "Clean 1",
+            "type": ".v1.Container",
+            "base_type": "container",
+            "parent_container_id": null
+        },
+        "7a336718-5f75-4644-b666-d41f220ecb46": {
+            "name": "Product_data",
+            "type": ".v1.LoadExcel",
+            "base_type": "input",
+            "parent_container_id": null
+        },
+        "969acaea-e68e-4553-a49a-ecd3bbef270d": {
+            "name": "Rename Color",
+            "type": ".v1.Container",
+            "base_type": "container",
+            "parent_container_id": null
+        },
+        "2a2be53f-3808-475e-bf2f-4447d852642a": {
+            "name": "RichNullFilter 2",
+            "type": ".v2018_2_1.RichNullFilter",
+            "base_type": "transform",
+            "parent_container_id": "969acaea-e68e-4553-a49a-ecd3bbef270d"
+        },
+        "05f9652e-9b18-4b8d-8b5c-9e334c57b300": {
+            "name": "renamed Color to Product Color 1",
+            "type": ".v1.RenameColumn",
+            "base_type": "transform",
+            "parent_container_id": "969acaea-e68e-4553-a49a-ecd3bbef270d"
+        },
+        "56e5a515-364b-4f39-80c0-5b92f55ce502": {
+            "name": "Clean 2",
+            "type": ".v1.Container",
+            "base_type": "container",
+            "parent_container_id": null
+        },
+        "579b2feb-629d-47c4-9efa-3cd849d45236": {
+            "name": "Sales_data",
+            "type": ".v1.LoadExcel",
+            "base_type": "input",
+            "parent_container_id": null
+        },
+        "bf24ae4c-9290-41c3-96e8-75b903d3073f": {
+            "name": "Customer_data",
+            "type": ".v1.LoadExcel",
+            "base_type": "input",
+            "parent_container_id": null
+        },
+        "486d638c-cf30-4fe8-b085-8460751ae27a": {
+            "name": "Remove Nulls",
+            "type": ".v1.Container",
+            "base_type": "container",
+            "parent_container_id": null
+        },
+        "530eb96a-c295-4ef5-bb24-d22f39b733de": {
+            "name": "Change OrderDateKey to Date 1",
+            "type": ".v1.ChangeColumnType",
+            "base_type": "transform",
+            "parent_container_id": "486d638c-cf30-4fe8-b085-8460751ae27a"
+        },
+        "023b0e04-6222-40cd-b2af-206ff2487dd5": {
+            "name": "RichNullFilter 1",
+            "type": ".v2018_2_1.RichNullFilter",
+            "base_type": "transform",
+            "parent_container_id": "486d638c-cf30-4fe8-b085-8460751ae27a"
+        },
+        "edb738b5-60db-407e-acae-c97e4b08c5be": {
+            "name": "Change type",
+            "type": ".v1.Container",
+            "base_type": "container",
+            "parent_container_id": null
+        },
+        "2a968238-893b-4d29-8fcc-230b30025318": {
+            "name": "Exclude multi-column:multiple 1",
+            "type": ".v1.RangeFilter",
+            "base_type": "transform",
+            "parent_container_id": "edb738b5-60db-407e-acae-c97e4b08c5be"
+        },
+        "77b31592-1a57-4c02-bfbb-b3f0e1c0c08e": {
+            "name": "Change Postal Code to Number (whole) 1",
+            "type": ".v1.ChangeColumnType",
+            "base_type": "transform",
+            "parent_container_id": "edb738b5-60db-407e-acae-c97e4b08c5be"
+        },
+        "1abe77d2-6373-49a6-9012-97c91e6639de": {
+            "name": "Exclude Postal Code:null 1",
+            "type": ".v1.RangeFilter",
+            "base_type": "transform",
+            "parent_container_id": "edb738b5-60db-407e-acae-c97e4b08c5be"
+        },
+        "c90afe53-d6db-4d62-ac0f-4d2227d336c7": {
+            "name": "Product+Customer",
+            "type": ".v2018_2_3.SuperUnion",
+            "base_type": "superNode",
+            "parent_container_id": null
+        },
+        "09ab23a3-4a07-48f0-9e6e-918383b0ad1d": {
+            "name": "Sales+Union",
+            "type": ".v2018_2_3.SuperJoin",
+            "base_type": "superNode",
+            "parent_container_id": null
+        }
+    }
+}
