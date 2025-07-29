@@ -10,18 +10,16 @@ This project automates the generation of Power Query M scripts for Power BI by l
 
 🏗️ Project Structure
 graphql
-Copy
-Edit
-.
-├── parser_tfl.py                     # Parses transformation rules from the TFL JSON file
-├── excel_schema.py                   # Extracts sheet names and column data types from the Excel file
-├── generator.py                      # Generates M script using schema and logic via LLM
-├── requirements.txt                  # Python dependencies
-├── New_Dashboard_Parameter_Updated.json  # Input: TFL file with transformation logic
-├── flow.json                         # Output: Cleaned flow extracted from TFL
-├── excel_schema.json                 # Output: Excel schema
-├── combined_datasets.xlsx           # Input: Excel file with multiple sheets
-└── output.pq                         # Final Power Query M script ready for Power BI
+
+          ├── parser_tfl.py                     # Parses transformation rules from the TFL JSON file
+          ├── excel_schema.py                   # Extracts sheet names and column data types from the Excel file
+          ├── generator.py                      # Generates M script using schema and logic via LLM
+          ├── requirements.txt                  # Python dependencies
+          ├── New_Dashboard_Parameter_Updated.json  # Input: TFL file with transformation logic
+          ├── flow.json                         # Output: Cleaned flow extracted from TFL
+          ├── excel_schema.json                 # Output: Excel schema
+          ├── combined_datasets.xlsx           # Input: Excel file with multiple sheets
+          └── output.pq                         # Final Power Query M script ready for Power BI
 🔧 Setup Instructions
 1. 📦 Install Dependencies
 Make sure Python 3.7+ is installed, then run:
